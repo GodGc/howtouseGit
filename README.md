@@ -254,3 +254,17 @@ git checkout 文件名
 关联后，使用命令`git push -u origin master`第一次推送 master 分支的所有内容；
 
 此后，每次本地提交后，只要有必要，就可以使用命令`git push origin master`推送最新修改；
+
+
+
+### 创建分支
+
+```shell
+$ git checkout -b dev
+Switched to a new branch 'dev'
+
+# 这一句相当于2句的效果,创建 dev branch 然后切换到dev分支上
+$ git branch dev
+$ git checkout dev
+```
+
