@@ -325,3 +325,9 @@ no changes added to commit (use "git add" and/or "git commit -a")
 ### git分支管理模型
 
 ![gitflow](D:\Enotes\08-git\gitflow.jpg)
+
+
+
+
+
+bugfixed done!
