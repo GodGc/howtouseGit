@@ -270,12 +270,18 @@ $ git checkout dev
 
 
 
-### 合并分支
+Git 鼓励大量使用分支：
 
-在分支上修改后,提交到分支仓库,然后切换到master主分支进行合并内容:
+查看分支：`git branch`
 
-`git merge`命令用于合并指定分支到当前分支。合并后，再查看 readme.txt 的内容，就可以看到，和`dev`分支的最新提交是完全一样的。
+创建分支：`git branch <name>`
 
+切换分支：`git checkout <name>`
 
+创建 + 切换分支：`git checkout -b <name>`
 
-test,this write at branch dev /try 2
+合并某分支到当前分支：`git merge <name>`
+
+删除分支：`git branch -d <name>`
+
+github
