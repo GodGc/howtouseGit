@@ -347,4 +347,4 @@ no changes added to commit (use "git add" and/or "git commit -a")
 
 #### 丢弃没有被合并过的分支
 
-如果要丢弃一个没有被合并过的分支，可以通过`git branch -D <name>`强行删除。
+如果要丢弃没有被合并过的分支，可以通过`git branch -D <name>`强行删除。
