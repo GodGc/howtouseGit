@@ -1,4 +1,4 @@
-## git-learn
+## learn how to use git
 
 
 
@@ -351,4 +351,13 @@ no changes added to commit (use "git add" and/or "git commit -a")
 
 
 
-远程仓库push测试
+### 处理push远程仓库分支时的冲突
+
+在多人协作的工作模式通常是这样：
+
+1. 首先，可以试图用`git push origin <branch-name>`推送自己的修改；
+2. 如果推送失败，则因为远程分支比你的本地更新，需要先用`git pull`拉取远程分支的代码,会自动试图和本地代码进行合并；
+3. 如果合并有冲突，则解决冲突，**并在本地提交**；
+4. 没有冲突或者解决掉冲突后，再用`git push origin <branch-name>`推送就能成功！
+
+如果`git pull`提示`no tracking information`，则说明本地分支和远程分支的链接关系没有创建，用命令`git branch --set-upstream-to <branch-name> origin/<branch-name>`。
