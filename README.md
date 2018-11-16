@@ -361,3 +361,76 @@ no changes added to commit (use "git add" and/or "git commit -a")
 4. 没有冲突或者解决掉冲突后，再用`git push origin <branch-name>`推送就能成功！
 
 如果`git pull`提示`no tracking information`，则说明本地分支和远程分支的链接关系没有创建，用命令`git branch --set-upstream-to <branch-name> origin/<branch-name>`。
+
+
+
+### 给分支上的commit打标签
+
+发布一个版本时，我们通常先在版本库中打一个标签（tag），这样，就唯一确定了打标签时刻的版本。将来无论什么时候，取某个标签的版本，就是把那个打标签的时刻的历史版本取出来。所以，标签也是版本库的一个快照。
+
+Git的标签虽然是版本库的快照，但其实它就是指向某个commit的指针（跟分支很像对不对？但是分支可以移动，标签不能移动），所以，创建和删除标签都是瞬间完成的。
+
+
+
+**查看标签**
+
+```shell
+git tag
+```
+
+**新建标签**     --默认是在当前分支的HEAD
+
+```shell
+git tag <tagname>
+```
+
+**为指定commit新建标签**
+
+```shell
+git tag <tagname> <commit_id>
+```
+
+**指定标签信息**
+
+```shell
+git tag -a <tagname> -m "blablabla..."
+```
+
+**推送某个标签到远程，使用命令`git push origin <tagname>`：**
+
+```shell
+$ git push origin v1.0
+Total 0 (delta 0), reused 0 (delta 0)
+To github.com:michaelliao/learngit.git
+ * [new tag]         v1.0 -> v1.0
+```
+
+**一次性推送全部尚未推送到远程的本地标签：**
+
+```shell
+$ git push origin --tags
+```
+
+**删除本地标签:**
+
+```shell
+$ git tag -d v0.1
+```
+
+**删除远程标签:**
+
+1. 先删除本地标签
+
+   ```shell
+   git tag -d v0.1
+   ```
+
+2. 远程删除。删除命令也是push，但是格式如下：
+
+   ```shell
+   $ git push origin :refs/tags/v0.1
+   To github.com:michaelliao/learngit.git
+    - [deleted]         v0.1
+   ```
+
+
