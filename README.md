@@ -276,3 +276,6 @@ $ git checkout dev
 
 `git merge`命令用于合并指定分支到当前分支。合并后，再查看 readme.txt 的内容，就可以看到，和`dev`分支的最新提交是完全一样的。
 
+
+
+test,this write at branch dev /try 2
