@@ -1,7 +1,6 @@
 ## how to use git
 
 
-
 ### init:
 
 ```shell
@@ -324,6 +323,7 @@ no changes added to commit (use "git add" and/or "git commit -a")
 
 ### git分支管理模型
 
+
 #### 分支策略
 
 在实际开发中，我们应该按照几个基本原则进行分支管理：
@@ -334,10 +334,7 @@ no changes added to commit (use "git add" and/or "git commit -a")
 
 你和你的小伙伴们每个人都在`dev`分支上干活，每个人都有自己的分支，时不时地往`dev`分支上合并就可以了
 
-
-
-![gitflow](D:\Enotes\08-git\gitflow.jpg)
-
+![gitflow](https://github.com/GodGc/howtouseGit/blob/master/gitflow.jpg)
 
 
 #### bug分支
@@ -346,6 +343,11 @@ no changes added to commit (use "git add" and/or "git commit -a")
 
 当手头工作没有完成时，先把工作现场`git stash`一下，然后去修复bug，修复后，再`git stash pop`，回到工作现场。
 
+
 #### 丢弃没有被合并过的分支
 
-如果要丢弃一个没有被合并过的分支，可以通过`git branch -D <name>`强行删除。
+如果要丢弃没有被合并过的分支，可以通过`git branch -D <name>`强行删除。
+
+
+
+远程仓库push测试	
