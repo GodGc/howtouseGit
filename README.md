@@ -113,7 +113,7 @@ git commit -m "this a introduction for this commit"
 
 ### 版本回退
 
-##### 查看版本日志
+#### 查看版本日志
 
 使用` git log`命令显示从最近到最远的提交日志，我们可以看到3次提交,也就是3个版本,第一个HEAD是当前版本,上一个版本是HEAD^,上上个版本是HEAD^^
 
@@ -139,7 +139,7 @@ Date:   Fri May 18 20:59:18 2018 +0800
     wrote a readme file
 ```
 
-##### 回退版本
+#### 回退版本
 
 把当前版本`append GPL`回退到上一个版本`add distributed`，可以使用`git reset --hard commit_id`命令
 
@@ -152,7 +152,7 @@ HEAD is now at e475afc add distributed
 
 
 
-##### 如果前进到之前的新版本
+#### 如果前进到之前的新版本
 
 **通过`git log`查看,发现回退后 最初的HEAD版本,也就是之前的最新版本不见了!**
 
@@ -186,10 +186,26 @@ ee06fa5 (HEAD -> master) HEAD@{2}: commit: change the list style for this note
 
 
 
-##### 总结一下
+#### 总结一下
 
 - `HEAD`指向的版本就是当前版本，因此，Git允许我们在版本的历史之间穿梭，使用命令`git reset --hard commit_id`。
 - 穿梭前，用`git log`可以查看提交历史，以便确定要回退到哪个版本。
 - 要重返未来，用`git reflog`查看命令历史，以便确定要回到未来的哪个版本。
 
 
+
+
+
+### 版本库（Repository）
+
+工作区有一个隐藏目录`.git`，这个不算工作区，而是Git的版本库。Git的版本库里存了很多东西，其中最重要的就是称为stage（或者叫index）的暂存区，还有Git为我们自动创建的第一个分支`master`，以及指向`master`的一个指针叫`HEAD`。
+
+把文件往Git版本库里添加的时候，是分两步执行的：
+
+​	第一步是用`git add`把文件添加进去，实际上就是把文件修改添加到暂存区；
+
+​	第二步是用`git commit`提交更改，实际上就是把暂存区的所有内容提交到当前分支。
+
+因为我们创建Git版本库时，Git自动为我们创建了唯一一个`master`分支，所以，现在，`git commit`就是往`master`分支上提交更改。
+
+可以简单理解为，需要提交的文件修改通通放到暂存区，然后，一次性提交暂存区的所有修改。
