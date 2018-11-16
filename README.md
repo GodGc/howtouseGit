@@ -291,3 +291,31 @@ Git 鼓励大量使用分支：
 
 删除分支：`git branch -d <name>`
 
+
+
+### 合并 冲突
+
+有时候使用git合并2个分支上的内容的时候,git没有办法自动合并内容,因为2个分支上的文件有冲突,那么我们就需要手动去修改了.
+
+使用`git status` 查看冲突文件,然后打开该文件手动修改,保存后再提交到当前分支的仓库 add ... commit...
+
+```shell
+$ git status
+On branch master
+Your branch is ahead of 'origin/master' by 2 commits.
+  (use "git push" to publish your local commits)
+
+You have unmerged paths.
+  (fix conflicts and run "git commit")
+  (use "git merge --abort" to abort the merge)
+
+Unmerged paths:
+  (use "git add <file>..." to mark resolution)
+
+    both modified:   readme.txt
+
+no changes added to commit (use "git add" and/or "git commit -a")
+```
+
+1.经过自己的测试，在合并出现问题之后，master分支的装填是merging,代表正在合并过程中
+2.此时，两个文件已经是一个完整体了，虽然还是有冲突内容，修改完冲突内容之后，提交，此时两个文件已经合并成功了
