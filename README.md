@@ -10,15 +10,15 @@ git init
 
 
 
-### 添加文件到仓库并提交:
+### 添加文件到仓库:
 
-1. 添加到仓库:
+1. 添加到暂存区:
 
 ```shell
 git add readme.txt
 ```
 
-2. 提交到仓库:
+2. 从暂存区提交到仓库:
 
 ```shell
 git commit -m "this a introduction for this commit"
@@ -243,4 +243,14 @@ git checkout 文件名
 
 场景2：当你不但改乱了工作区某个文件的内容，还添加到了暂存区时，想丢弃修改，分两步，第一步用命令`git reset HEAD <file>`，就回到了场景1，第二步按场景1操作。
 
-场景3：已经提交了不合适的修改到版本库时，想要撤销本次提交，参考[版本回退](https://www.liaoxuefeng.com/wiki/0013739516305929606dd18361248578c67b8067c8c017b000/0013744142037508cf42e51debf49668810645e02887691000)一节，不过前提是没有推送到远程库。
+场景3：已经提交了不合适的修改到版本库时，想要撤销本次提交，参考版本回退方法，不过前提是没有推送到远程库。
+
+
+
+### 添加远程库
+
+要关联一个远程库，使用命令`git remote add origin git@server-name:path/repo-name.git`；
+
+关联后，使用命令`git push -u origin master`第一次推送 master 分支的所有内容；
+
+此后，每次本地提交后，只要有必要，就可以使用命令`git push origin master`推送最新修改；
