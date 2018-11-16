@@ -343,3 +343,8 @@ no changes added to commit (use "git add" and/or "git commit -a")
 修复bug时，我们会通过创建新的bug分支进行修复，然后合并，最后删除；
 
 当手头工作没有完成时，先把工作现场`git stash`一下，然后去修复bug，修复后，再`git stash pop`，回到工作现场。
+
+
+#### 丢弃没有被合并过的分支
+
+如果要丢弃一个没有被合并过的分支，可以通过`git branch -D <name>`强行删除。
