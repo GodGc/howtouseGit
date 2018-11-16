@@ -319,3 +319,9 @@ no changes added to commit (use "git add" and/or "git commit -a")
 
 1.经过自己的测试，在合并出现问题之后，master分支的装填是merging,代表正在合并过程中
 2.此时，两个文件已经是一个完整体了，虽然还是有冲突内容，修改完冲突内容之后，提交，此时两个文件已经合并成功了
+
+
+
+### git分支管理模型
+
+![gitflow](D:\Enotes\08-git\gitflow.jpg)
