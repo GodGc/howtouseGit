@@ -335,7 +335,7 @@ no changes added to commit (use "git add" and/or "git commit -a")
 
 你和你的小伙伴们每个人都在`dev`分支上干活，每个人都有自己的分支，时不时地往`dev`分支上合并就可以了
 
-![gitflow](D:\Enotes\08-git\gitflow.jpg)
+![gitflow](https://github.com/GodGc/howtouseGit/blob/master/gitflow.jpg)
 
 
 #### bug分支
