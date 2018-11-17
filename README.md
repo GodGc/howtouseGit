@@ -1,8 +1,15 @@
 ## learn how to use git
 
+### Git配置
+
+```shell
+$ git config --global user.name "Your Name"
+$ git config --global user.email "email@example.com"
+```
 
 
-### init:
+
+### 初始化一个本地仓库:
 
 ```shell
 git init
@@ -28,92 +35,37 @@ git commit -m "this a introduction for this commit"
 
 ### 查看仓库修改状态
 
-`git status`命令可以让我们时刻掌握仓库当前的状态，上面的命令输出告诉我们，readme.txt被修改过了，但还没有准备提交的修改。
-
-- 要随时掌握工作区的状态，使用`git status`命令。
-- 如果`git status`告诉你有文件被修改过，用`git diff`可以查看修改内容。
-
-
-
-如何将更新后的文件 更新到 仓库中:
-
-1. 先查看一下仓库状态:
-
-   ```shell
-   $ git status
-   # 输出结果如下
-   On branch master
-   # readme.txt被修改过了，但还没有准备提交修改。
-   Changes not staged for commit:
-     (use "git add <file>..." to update what will be committed)
-     (use "git checkout -- <file>..." to discard changes in working directory)
-   
-       modified:   readme.txt
-   
-   no changes added to commit (use "git add" and/or "git commit -a")
-   ```
-
-2. 查看具体的修改内容:
-
-   ```shell
-   # diff 其实就是different的意思
-   
-   $ git diff readme.txt 
-   diff --git a/readme.txt b/readme.txt
-   index 46d49bf..9247db6 100644
-   --- a/readme.txt
-   +++ b/readme.txt
-   @@ -1,2 +1,2 @@
-   # 如下就是修改内容
-   # -开头的一行是过去版本
-   # +开头是修改后版本
-   -Git is a version control system.
-   +Git is a distributed version control system.
-    Git is free software.
-   ```
-
-3. 提交修改:  
-
-   - 添加到仓库
-
-   ```shell
-   git add readme.txt
-   ```
-
-   - 在提交修改之前可以看一下仓库的状态
-
-   ```shell
-   $ git status
-   On branch master
-   # 将要被提交的修改包括readme.txt
-   Changes to be committed:
-     (use "git reset HEAD <file>..." to unstage)
-   
-       modified:   readme.txt
-   ```
-
-   - 提交修改:
-
-   ```shell
-   git commit -m "new introduction for this commit"
-   [master e475afc] add distributed
-    1 file changed, 1 insertion(+), 1 deletion(-)
-   ```
-
-4. 提交过后查看仓库状态
-
-   ```shell
-   git status
-   On branch master
-   # Git 告诉我们当前没有需要提交的修改，而且，工作目录是干净（working tree clean）的
-   nothing to commit, working tree clean
-   ```
+```shell
+git status
+```
 
 
 
-### 版本回退
+### 查看修改内容
 
-#### 查看版本日志
+```shell
+git diff
+```
+
+
+
+### 查看提交日志
+
+```shell
+git log
+```
+
+### 查看命令历史
+
+```shell
+git reflog
+```
+
+
+
+
+
+### 查看版本日志
 
 使用` git log`命令显示从最近到最远的提交日志，我们可以看到3次提交,也就是3个版本,第一个HEAD是当前版本,上一个版本是HEAD^,上上个版本是HEAD^^
 
@@ -139,66 +91,31 @@ Date:   Fri May 18 20:59:18 2018 +0800
     wrote a readme file
 ```
 
-#### 回退版本
-
-把当前版本`append GPL`回退到上一个版本`add distributed`，可以使用`git reset --hard commit_id`命令
+### 回退版本
 
 ```SHELL
 $ git reset --hard HEAD^
 HEAD is now at e475afc add distributed
 ```
 
-> 可以继续 `git reset` 回退到上一个版本`wrote a readme file`
+> 以上命令是返回上一个版本，在Git中，用`HEAD`表示当前版本，上一个版本就是`HEAD^`，上上一个版本是`HEAD^^`，往上100个版本写成`HEAD~100`。
 
 
 
-#### 如果前进到之前的新版本
-
-**通过`git log`查看,发现回退后 最初的HEAD版本,也就是之前的最新版本不见了!**
-
-解决办法:
-
-1. **最简单的办法**:
-
-   使用`git reset --hard`命令改变了HEAD指向某个版本后，还可以用`git log --reflog`查看所有版本。
-
-2. **其他方法**
-
-   只要上面的命令行窗口还没有被关掉，你就可以顺着往上找啊找啊，找到那个`append GPL`的`commit id`是`1094adb...`，于是就可以指定回到未来的某个版本：
-
-   ```shell
-   # 版本号没必要写全，前几位就可以了，Git会自动去找。当然也不能只写前一两位，因为Git可能会找到多个版本号，就无法确定是哪一个了。
-   git reset --hard 1094a
-   ```
-
-3. 而且:
-
-   git提供了一个命令可以查看你曾经输入过的命令`git reflog`,其中带有**reset**字样就是曾经的回退命令,找寻那一行的commit_id就可再回退到某个版本,当然最好根据 commit提交时写的说明来回归
+### 回退到指定版本
 
 ```shell
-$ git reflog
-ee06fa5 (HEAD -> master) HEAD@{0}: reset: moving to ee06f
-1de5171 HEAD@{1}: reset: moving to HEAD^
-ee06fa5 (HEAD -> master) HEAD@{2}: commit: change the list style for this note
-1de5171 HEAD@{3}: commit: how to save changes to git-repository
-47d69f6 HEAD@{4}: commit (initial): git-learn notes
+git reset --hard <commit-id> 
+# commit-id 不必写全,git会
 ```
 
 
-
-#### 总结一下
-
-- `HEAD`指向的版本就是当前版本，因此，Git允许我们在版本的历史之间穿梭，使用命令`git reset --hard commit_id`。
-- 穿梭前，用`git log`可以查看提交历史，以便确定要回退到哪个版本。
-- 要重返未来，用`git reflog`查看命令历史，以便确定要回到未来的哪个版本。
 
 
 
 
 
 ### 版本库（Repository）
-
-
 
 把文件往Git版本库里添加的时候，是分两步执行的：
 
@@ -218,7 +135,9 @@ ee06fa5 (HEAD -> master) HEAD@{2}: commit: change the list style for this note
 
 可以简单理解为，需要提交的文件修改通通放到暂存区，然后，一次性提交暂存区的所有修改。
 
-git管理有3个状态
+
+
+### git管理的3个状态
 
 1. modified 已修改
 
@@ -237,23 +156,108 @@ git checkout 文件名
 
 
 
-#### 撤销修改
+### 撤销修改
+#### 丢弃工作区的修改
 
-场景1：当你改乱了工作区某个文件的内容，想直接丢弃工作区的修改时，用命令`git checkout -- file`。
+```shell
+git checkout -- file
+```
 
-场景2：当你不但改乱了工作区某个文件的内容，还添加到了暂存区时，想丢弃修改，分两步，第一步用命令`git reset HEAD <file>`，就回到了场景1，第二步按场景1操作。
+该命令是指将文件在工作区的修改全部撤销，这里有两种情况：
 
-场景3：已经提交了不合适的修改到版本库时，想要撤销本次提交，参考版本回退方法，不过前提是没有推送到远程库。
+1. 一种是file自修改后还没有被放到暂存区，现在，撤销修改就回到和版本库一模一样的状态；
+2. 一种是file已经添加到暂存区后，又作了修改，现在，撤销修改就回到添加到暂存区后的状态。
+
+总之，就是让这个文件回到最近一次git commit或git add时的状态。
+
+#### 丢弃暂存区的修改
+
+1. 撤销掉暂存区的修改，重新放回工作区
+
+```shell
+git reset HEAD <file>
+```
+
+2. 撤销工作区的修改
+
+```shell
+git checkout -- file
+```
+
+### 场景3
+
+已经提交了不合适的修改到版本库时，想要撤销本次提交，参考版本回退方法，不过前提是没有推送到远程库。
+
+
+
+### 删除文件
+
+```shell
+git rm <file>
+```
+
+### 从版本库里面删除文件
+
+1. 先从工作区删除
+2. 然后提交版本到版本库
+
+```shell
+git commit -m "delete text.txt"
+```
 
 
 
 ### 添加远程库
 
-要关联一个远程库，使用命令`git remote add origin git@server-name:path/repo-name.git`；
+#### 创建SSH Key
 
-关联后，使用命令`git push -u origin master`第一次推送 master 分支的所有内容；
+```shell
+ssh-keygen -t rsa -C "youremail@example.com"
+```
+
+#### 关联一个远程库
+
+```shell
+git remote add origin git@server-name:path/repo-name.git
+```
+
+#### 将本地的master分支推送到origin主机
+
+```shell
+git push -u origin master
+```
+
+> `-u` 表示第一次推送master分支的所有内容
+>
+> 同时指定origin为默认主机，后面就可以不加任何参数使用git push了。
+>
+> 不带任何参数的git push，默认只推送当前分支，这叫做simple方式。此外，还有一种matching方式，会推送所有有对应的远程分支的本地分支。Git 2.0版本之前，默认采用matching方法，现在改为默认采用simple方式。
+
+#### 指定默认主机后, 从本地推送当前分支到远程库主分支
+
+```
+$ git push
+```
+
+如果推送失败，先用git pull抓取远程的新提交；
+
+**从远程库抓取分支**
+
+```
+$ git pull
+```
+
+如果有冲突，要先处理冲突。
 
 此后，每次本地提交后，只要有必要，就可以使用命令`git push origin master`推送最新修改；
+
+
+
+### 克隆远程库
+
+```shell
+git clone https://github.com/username/repositoryname.git
+```
 
 
 
@@ -261,14 +265,26 @@ git checkout 文件名
 
 ```shell
 $ git checkout -b dev
-Switched to a new branch 'dev'
+
 
 # 这一句相当于2句的效果,创建 dev branch 然后切换到dev分支上
 $ git branch dev
 $ git checkout dev
 ```
 
+### 查看分支
 
+```shell
+git branch
+```
+
+>  `git branch`命令会列出所有分支，当前分支前面会标一个*号。
+
+### 切换分支
+
+```shell
+git checkout <branchname>
+```
 
 ### 合并分支
 
@@ -321,6 +337,46 @@ no changes added to commit (use "git add" and/or "git commit -a")
 2.此时，两个文件已经是一个完整体了，虽然还是有冲突内容，修改完冲突内容之后，提交，此时两个文件已经合并成功了
 
 
+
+### 查看分支合并图
+
+```shell
+git log --graph
+```
+
+
+
+
+
+### 删除分支
+
+```shell
+git branch -d <branchname>
+```
+
+
+
+### 保存工作现场
+
+```shell
+git stash
+```
+
+### 查看工作现场
+
+```shell
+$ git stash list
+```
+
+### 恢复工作现场
+
+```shell
+git stash pop
+```
+
+
+
+-----
 
 ### git分支管理模型
 
@@ -434,3 +490,10 @@ $ git tag -d v0.1
    ```
 
 
+
+### 在github上参与开源项目
+
+1. 在fork这个项目到自己的账号 -- 自己拥有Fork后的仓库的读写权限；
+2. 本地克隆自己账号上的项目地址
+3. 本地修改后发push到自己的github远程仓库
+4. 如果希望这个开源项目的官方库能接受你的修改，可以在GitHub上发起一个pull request。当然，对方是否接受你的pull request就不一定了。
