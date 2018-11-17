@@ -31,6 +31,41 @@ git add readme.txt
 git commit -m "this a introduction for this commit"
 ```
 
+> 如果嫌一个一个添加很麻烦,可以使用`git add ./*`来把当前工作区的所有文件提交到仓库
+
+
+
+### 忽略特殊文件
+
+忽略文件的原则是：
+
+1. 忽略操作系统自动生成的文件，比如缩略图等；
+2. 忽略编译生成的中间文件、可执行文件等，也就是如果一个文件是通过另一个文件自动生成的，那自动生成的文件就没必要放进版本库，比如Java编译产生的`.class`文件；
+3. 忽略你自己的带有敏感信息的配置文件，比如存放口令的配置文件。
+
+在工作区的根目录添加一个`.gitignore`文件,添加自定义让git忽略的文件名即可,如下:
+
+```shell
+# Windows:
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# Python:
+*.py[cod]
+*.so
+*.egg
+*.egg-info
+dist
+build
+
+# My configurations:
+db.ini
+deploy_key_rsa
+```
+
+**最后一步就是把`.gitignore`也提交到Git**
+
 
 
 ### 查看仓库修改状态
