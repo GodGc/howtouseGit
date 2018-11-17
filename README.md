@@ -1,4 +1,4 @@
-## learn how to use git
+## Learn how to use git
 
 ### Git配置
 
@@ -497,3 +497,7 @@ $ git tag -d v0.1
 2. 本地克隆自己账号上的项目地址
 3. 本地修改后发push到自己的github远程仓库
 4. 如果希望这个开源项目的官方库能接受你的修改，可以在GitHub上发起一个pull request。当然，对方是否接受你的pull request就不一定了。
+
+
+
+> 参考且十分感谢:[廖雪峰-git教程](https://www.liaoxuefeng.com/wiki/0013739516305929606dd18361248578c67b8067c8c017b000)
